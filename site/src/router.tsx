@@ -123,18 +123,6 @@ const AppearanceSettingsPage = lazy(
 			"./pages/DeploymentSettingsPage/AppearanceSettingsPage/AppearanceSettingsPage"
 		),
 );
-const UserAuthSettingsPage = lazy(
-	() =>
-		import(
-			"./pages/DeploymentSettingsPage/UserAuthSettingsPage/UserAuthSettingsPage"
-		),
-);
-const ExternalAuthSettingsPage = lazy(
-	() =>
-		import(
-			"./pages/DeploymentSettingsPage/ExternalAuthSettingsPage/ExternalAuthSettingsPage"
-		),
-);
 const OAuth2AppsSettingsPage = lazy(
 	() =>
 		import(
@@ -301,9 +289,6 @@ const TemplateInsightsPage = lazy(
 const TemplatePrebuildsPage = lazy(
 	() =>
 		import("./pages/TemplatePage/TemplatePrebuildsPage/TemplatePrebuildsPage"),
-);
-const PremiumPage = lazy(
-	() => import("./pages/DeploymentSettingsPage/PremiumPage/PremiumPage"),
 );
 const IconsPage = lazy(() => import("./pages/IconsPage/IconsPage"));
 const AccessURLPage = lazy(() => import("./pages/HealthPage/AccessURLPage"));
@@ -557,12 +542,6 @@ export const router = createBrowserRouter(
 								element={<AIGovernanceSettingsPage />}
 							/>
 							<Route path="network" element={<NetworkSettingsPage />} />
-							<Route path="userauth" element={<UserAuthSettingsPage />} />
-							<Route
-								path="external-auth"
-								element={<ExternalAuthSettingsPage />}
-							/>
-
 							<Route
 								path="notifications"
 								element={<DeploymentNotificationsPage />}
@@ -593,7 +572,6 @@ export const router = createBrowserRouter(
 						{groupsRouter()}
 
 						<Route path="idp-org-sync" element={<IdpOrgSyncPage />} />
-						<Route path="premium" element={<PremiumPage />} />
 					</Route>
 
 					<Route path="/settings" element={<UserSettingsLayout />}>
