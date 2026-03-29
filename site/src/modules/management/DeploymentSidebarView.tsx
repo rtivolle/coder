@@ -13,7 +13,6 @@ interface DeploymentSidebarViewProps {
 	/** Site-wide permissions. */
 	permissions: Permissions;
 	showOrganizations: boolean;
-	hasPremiumLicense: boolean;
 	experiments: Experiment[];
 	buildInfo: BuildInfoResponse;
 }
@@ -25,7 +24,6 @@ interface DeploymentSidebarViewProps {
 export const DeploymentSidebarView: FC<DeploymentSidebarViewProps> = ({
 	permissions,
 	showOrganizations,
-	hasPremiumLicense,
 	experiments,
 	buildInfo,
 }) => {
@@ -43,16 +41,6 @@ export const DeploymentSidebarView: FC<DeploymentSidebarViewProps> = ({
 						Appearance
 					</SidebarNavItem>
 				)}
-				{permissions.viewDeploymentConfig && (
-					<SidebarNavItem href="/deployment/userauth">
-						User Authentication
-					</SidebarNavItem>
-				)}
-				{permissions.viewDeploymentConfig && (
-					<SidebarNavItem href="/deployment/external-auth">
-						External Authentication
-					</SidebarNavItem>
-				)}
 				{permissions.viewDeploymentConfig &&
 					(experiments.includes("oauth2") || isDevBuild(buildInfo)) && (
 						<SidebarNavItem href="/deployment/oauth2-provider/apps">
@@ -61,6 +49,9 @@ export const DeploymentSidebarView: FC<DeploymentSidebarViewProps> = ({
 					)}
 				{permissions.viewDeploymentConfig && (
 					<SidebarNavItem href="/deployment/network">Network</SidebarNavItem>
+				)}
+				{permissions.viewDeploymentConfig && (
+					<SidebarNavItem href="/cli-auth">AI CLI Connection</SidebarNavItem>
 				)}
 				{permissions.readWorkspaceProxies && (
 					<SidebarNavItem href="/deployment/workspace-proxies">
@@ -101,9 +92,6 @@ export const DeploymentSidebarView: FC<DeploymentSidebarViewProps> = ({
 							<span>Notifications</span>
 						</div>
 					</SidebarNavItem>
-				)}
-				{!hasPremiumLicense && (
-					<SidebarNavItem href="/deployment/premium">Premium</SidebarNavItem>
 				)}
 			</div>
 		</BaseSidebar>
